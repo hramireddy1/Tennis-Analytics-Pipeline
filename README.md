@@ -24,7 +24,7 @@ This project relies on Jeff Sackman's [tennis match data](https://github.com/Jef
 - [Looker Studio](https://lookerstudio.google.com/overview): Creating the analytics dashboard.
 
 ## Data Pipeline
-![pipeline-digram](images/pipeline_diagram.png
+![pipeline-digram](images/pipeline_diagram.png)
 
 - Terraform is used to create our GCP infrastructure as code, including a Cloud Storage bucket to serve as our data lake and three BigQuery datasets: a dataset for untransformed data, a staging dataset for intermediate views and tables, and a production dataset to store final tables after transformation in dbt.
 - Prefect is used to orchestrate the extraction and loading of data by creating flows to extract data from the tennis data repository, do some minor cleaning (conversion of strings to timestamps), and load the data to Cloud Storage and BigQuery. Flows are scheduled to be executed on a weekly basis.
