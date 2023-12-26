@@ -40,3 +40,9 @@ def etl_gcs_to_bq(tour:str, subgroup:str, year:int, dest_tab:str):
     df = clean(df)
     write_bq(df,dest_tab)
     
+@flow()
+def etl_bq_matches_flow(
+    tour: str = "atp",subgroup: str = "", years: list[int] = [2023], dest_tab: str = 'tennis_data.atp_tour' 
+):
+    for year in years:
+        etl_gcs_to_bq(tour, subgroup, year, dest_tab)
