@@ -27,7 +27,7 @@ def write_local(df: pd.DataFrame, dataset_file:str) -> Path:
 @task()
 def write_gcs(path: Path) -> None:
     """Upload parquet file to GCS"""
-    gcs_block = GcsBucket.load("tennis-bucket")
+    gcs_block = GcsBucket.load("my-gcs-bucket-block")
     gcs_block.upload_from_path(
         from_path =f"{path}",
         to_path = path
