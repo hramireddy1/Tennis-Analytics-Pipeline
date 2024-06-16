@@ -47,7 +47,7 @@ def etl_web_to_gcs(tour, subgroup, year) -> None:
 
 @flow()
 def etl_matches_flow(
-    tour: str = "atp",subgroup: str = "", years: list[int] = [2023], 
+    tour: str = "atp",subgroup: str = "", years: list[int] = [2020,2021,2022,2023,2024], 
 ):
     for year in years:
         etl_web_to_gcs(tour, subgroup, year)
