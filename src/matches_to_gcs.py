@@ -20,7 +20,7 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
 @task()
 def write_local(df: pd.DataFrame, dataset_file:str) -> Path:
     """Write dataframe as parquet file """
-    path = Path(f"data/matches/{dataset_file}.parquet").as_posix()
+    path = Path(f"{dataset_file}.parquet").as_posix()
     df.to_parquet(path, compression = 'gzip')
     return path
 
