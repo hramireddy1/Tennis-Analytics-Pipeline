@@ -30,7 +30,7 @@ def write_gcs(path: Path) -> None:
     gcs_block = GcsBucket.load("my-gcs-bucket-block")
     gcs_block.upload_from_path(
         from_path =f"{path}",
-        to_path = "data/matches"
+        to_path = f"data/matches/{path}"
     )
     return   
 
