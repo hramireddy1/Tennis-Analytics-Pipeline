@@ -20,11 +20,11 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
 def write_bq(df: pd.DataFrame,dest_tab: str) -> None:
     """Write DataFrame to BiqQuery"""
 
-    gcp_credentials_block = GcpCredentials.load("tennis-creds")
+    gcp_credentials_block = GcpCredentials.load("my-gcp-creds-block")
 
     df.to_gbq(
         destination_table= dest_tab,
-        project_id= 'tennis-analysis-405301',
+        project_id= 'tennis-analytics-409019',
         credentials = gcp_credentials_block.get_credentials_from_service_account(),
         chunksize=500_000,
         if_exists="append",
@@ -42,7 +42,7 @@ def etl_gcs_to_bq(tour:str, subgroup:str, year:int, dest_tab:str):
     
 @flow()
 def etl_bq_matches_flow(
-    tour: str = "atp",subgroup: str = "", years: list[int] = [2023], dest_tab: str = 'tennis_data.atp_tour' 
+    tour: str = "atp",subgroup: str = "", years: list[int] = [2020,2021,2022,2023,2024], dest_tab: str = 'tennis_data.atp_tour' 
 ):
     for year in years:
         etl_gcs_to_bq(tour, subgroup, year, dest_tab)
